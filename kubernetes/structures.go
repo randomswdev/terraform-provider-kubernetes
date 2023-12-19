@@ -243,10 +243,6 @@ func ptrToInt64(i int64) *int64 {
 	return &i
 }
 
-func pointerOf[A any](a A) *A {
-	return &a
-}
-
 func sliceOfString(slice []interface{}) []string {
 	result := make([]string, len(slice))
 	for i, s := range slice {

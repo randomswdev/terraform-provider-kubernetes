@@ -7,6 +7,7 @@ import (
 	"errors"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-provider-kubernetes/internal/pointer"
 	corev1 "k8s.io/api/core/v1"
 )
 
@@ -88,7 +89,7 @@ func expandPersistentVolumeClaimSpec(l []interface{}) (*corev1.PersistentVolumeC
 		obj.StorageClassName = ptrToString(v)
 	}
 	if v, ok := in["volume_mode"].(string); ok && v != "" {
-		obj.VolumeMode = pointerOf(corev1.PersistentVolumeMode(v))
+		obj.VolumeMode = pointer.PointerOf(corev1.PersistentVolumeMode(v))
 	}
 	return obj, nil
 }
