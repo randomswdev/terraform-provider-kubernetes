@@ -99,5 +99,8 @@ func generateResourceSpec(r ResourceConfig) (specresource.Resource, error) {
 	if err != nil {
 		return specresource.Resource{}, err
 	}
+	if len(spec.Resources) == 0 {
+		return specresource.Resource{}, fmt.Errorf("error running tfplugingen-openapi: %s", out)
+	}
 	return spec.Resources[0], nil
 }
